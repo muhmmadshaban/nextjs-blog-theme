@@ -6,6 +6,15 @@ const THEME = process.env.BLOG_THEME || 'default';
 const FONT_PRIMARY = process.env.BLOG_FONT_HEADINGS || 'sans-serif';
 const FONT_SECONDARY = process.env.BLOG_FONT_BODY || 'sans-serif';
 
+// Custom plugin to add RTL variants
+const rtlPlugin = plugin(function ({ addVariant }) {
+  addVariant('rtl', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`rtl${separator}${className}`)}[dir='rtl']`;
+    });
+  });
+});
+
 const hoveredSiblingPlugin = plugin(function ({ addVariant, e }) {
   addVariant('hovered-sibling', ({ container }) => {
     container.walkRules((rule) => {
@@ -49,17 +58,6 @@ module.exports = {
         primary: 'var(--font-primary)',
         secondary: 'var(--font-secondary)',
       },
-      theme: {
-        bejamas: {
-          colors: {
-            primary: '#FF8585',
-            'gradient-1': '#7d7aff',
-            'gradient-2': '#2121E2',
-            'gradient-3': '#FF76B8',
-            'gradient-4': '#001AFF',
-          },
-        },
-      },
       typography(theme) {
         return {
           dark: {
@@ -100,7 +98,12 @@ module.exports = {
       borderRadius: ['first', 'last'],
       borderWidth: ['last', 'hovered-sibling'],
       typography: ['dark'],
+      // Add RTL variants
+      margin: ['rtl'],
+      padding: ['rtl'],
+      textAlign: ['rtl'],
+      // Add other utilities as needed
     },
   },
-  plugins: [hoveredSiblingPlugin, pluginTypography, themesConfig],
+  plugins: [hoveredSiblingPlugin, pluginTypography, themesConfig, rtlPlugin],
 };
