@@ -8,8 +8,8 @@ export default function Header({ name }) {
       <Image 
         src="/LG1.png" // Path to your image
         alt={`${name} Logo`} 
-        width={200} // Set the width of the image
-        height={200} // Set the height of the image
+        width={600} // Set the width of the image
+        height={600} // Set the height of the image
         className="block mx-auto mb-4 rounded-full" // Add any additional classes you need
       />
       <p className="text-2xl text-center dark:text-white">
