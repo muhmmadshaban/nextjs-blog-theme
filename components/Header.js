@@ -6,7 +6,7 @@ export default function Header({ name }) {
     <header className="pt-20 pb-12">
       {/* Use the Image component for optimized image loading */}
       <Image 
-        src="s.png" // Path to your image
+        src="LG1.png" // Path to your image
         alt={`${name} Logo`} 
         width={48} // Set the width of the image
         height={48} // Set the height of the image
